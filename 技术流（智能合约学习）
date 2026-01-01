@@ -1,1 +1,14 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
 
+// 引入标准的 ERC20 库，这能省去我们自己写转账逻辑的麻烦
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract TianqiToken is ERC20 {
+    // 构造函数：在部署时运行一次
+    constructor() ERC20("Tianqi", "TQ") {
+        // 在部署时，给部署者（你）发行 100 万枚代币
+        // 18 是默认精度，所以要乘以 10 的 18 次方
+        _mint(msg.sender, 1000000 * 10 ** decimals());
+    }
+}
